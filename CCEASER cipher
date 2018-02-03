@@ -1,0 +1,77 @@
+#include<string>
+#include<iostream>
+
+using namespace std;
+
+string decrypt(string text,int key)
+{
+    int i=0;
+    string result="";
+    while(text[i] !='\0')
+    {
+
+        {
+     if(isupper(text[i]))
+        {
+            result += char(int(text[i]-key-65)%26 +65);
+        }
+    else
+    {
+        result+=char(int(text[i]-key-97)%26+97);
+    }
+        }
+    i++;
+}
+    return result;
+}
+
+string encrypt(string text , int key)
+{
+    int i=0;
+    string result="";
+    while(text[i] !='\0')
+    {
+
+        {
+     if(isupper(text[i]))
+        {
+            result += char(int(text[i]+key-65)%26 +65);
+        }
+    else
+    {
+        result+=char(int(text[i]+key-97)%26+97);
+    }
+        }
+    i++;
+}
+    return result;
+}
+int main()
+{
+    string dec;
+    char c,abc,text[1000];
+    int key;
+
+    cout<<"ENter text\n";
+    cin.getline(text,1000);
+    cout<<"\n Enter key \n";
+    cin>>key;
+
+    cout<<"\nWant to encrypt or decrypt (e,d) ?\n";
+    cin>>abc;
+    if(abc=='e')
+    {
+        dec=encrypt(text,key);
+    cout<<"ENCRYPTED TEXT \n"<<dec;
+    cout<<"\nWANT TO DENCRYPT THIS ?(y/n) \n";
+    cin>>c;
+    if((c=='y')||(c=='Y'))
+     cout<<"\n Decrypted text : \n"<<decrypt(dec,key);
+    }
+    else
+     cout<<"\n Decrypted text : \n"<<decrypt(text,key);
+
+    return 0;
+}
+
+
